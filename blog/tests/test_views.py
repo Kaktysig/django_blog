@@ -71,3 +71,4 @@ def test_edit_article(client):
     assert new_obj.name == edit_name
 
 # 85% покрытия есть. Дальше увы не успеваю :(
+# travis, please, working, ok?
