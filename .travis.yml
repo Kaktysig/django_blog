@@ -4,6 +4,7 @@ python:
   - 3.6
 
 install:
+  - pip install 'django==1.11.8'
   - pip install pytest pytest-django pytest-cov
 
 script:
