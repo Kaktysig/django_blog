@@ -74,7 +74,7 @@
 {% block title %}
     <div class="header-text">
         <h1>{{ title }}</h1>
-        {% if user %}
+        {% if auth %}
         <a class="new-article-btn" href="{% url 'create_new_article' %}">
             <button type="submit" class="btn btn-primary">
                 <i class="fa fa-plus" aria-hidden="true"></i>
@@ -83,4 +83,15 @@
         </a>
         {% endif %}
     </div>
+{% endblock %}
+
+{% block menu %}
+    <ul>
+        <li><a href="{% url 'home' %}">Главная</a></li>
+        {% if not auth %}
+        <li><a href="/admin/login">Вход</a></li>
+            {% else %}
+            <li><a href="/admin/logout">Выход</a></li>
+        {% endif %}
+    </ul>
 {% endblock %}

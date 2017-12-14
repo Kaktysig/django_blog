@@ -13,12 +13,14 @@ def list_view(request, page = 1):
     last_item = firstitem+ITEMS_ON_PAGE
     all_items = Articles.objects.all().order_by('-id')
     maxpage = int(ceil(len(all_items)/ITEMS_ON_PAGE) + 1)
+    if all_items.count() == 0:
+        maxpage += 1
     items = all_items[firstitem:last_item]
 
     return render(request, 'blog/list_view.html', {
         'articles' : items,
         'title' : 'Kaktys\'s blog',
-        'user': request.user.is_authenticated,
+        'auth': request.user.is_authenticated,
         'username': request.user.username,
         'pages' : list(range(1,maxpage)),
         'cur_page' : page + 1,
@@ -54,6 +56,7 @@ def create_new_article(request):
             'form' : form,
             'title' : 'Создание новой записи',
             'user' : request.user.username,
+            'auth': request.user.is_authenticated,
         })
 
 
@@ -103,4 +106,5 @@ def update_view(request,article_id):
         form = EditArticle(instance=article)
         return render(request, 'blog/edit.html', {
             'form' : form,
+            'auth': request.user.is_authenticated,
         })

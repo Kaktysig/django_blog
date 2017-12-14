@@ -41,3 +41,14 @@
 {% block title %}
     <h1>{{ title }}</h1>
 {% endblock %}
+
+{% block menu %}
+    <ul>
+        <li><a href="{% url 'home' %}">Главная</a></li>
+        {% if not auth %}
+        <li><a href="/admin/login">Вход</a></li>
+            {% else %}
+            <li><a href="/admin/logout">Выход</a></li>
+        {% endif %}
+    </ul>
+{% endblock %}

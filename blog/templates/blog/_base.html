@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="{% static 'blog/css/tacit-css.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog/bootstrap-4.0.0/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'blog/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
 </head>
 <body>
 <header>
     <menu>
+        {% block menu %}{% endblock %}
     </menu>
     <div class="row">
         <div class="col-lg-2"></div>

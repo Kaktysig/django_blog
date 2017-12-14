@@ -1,7 +1,7 @@
 /* MAIN */
 body{
     background-image: url(../img/back.jpg);
-    padding-top: 0px;
+    padding: 0px;
     background-color: #1a4038;
 }
 header{
@@ -21,6 +21,20 @@ a{
 
 
 /* MENU */
+menu{
+    background-color: rgba(0,0,0,0.7);
+    margin: 0px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+menu > ul > li{
+    display: inline-block;
+    padding-right: 20px;
+}
+menu > ul > li a{
+    color: white;
+    font-size: 20pt;
+}
 /* MENU END */
 
 

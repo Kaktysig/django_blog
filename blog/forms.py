@@ -16,4 +16,4 @@ class NewComment(forms.ModelForm):
 class EditArticle(forms.ModelForm):
     class Meta:
         model = Articles
-        fields = ('name', 'content', )
+        fields = ('name', 'content',)
