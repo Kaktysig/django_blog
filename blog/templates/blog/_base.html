@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <title>{{ title }}</title>
+    <link rel="icon" type="image/x-icon" class="js-site-favicon" href="{% static 'blog/img/icon.png' %}">
+
+    <link rel="stylesheet" href="{% static 'blog/css/tacit-css.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/bootstrap-4.0.0/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
+</head>
+<body>
+<header>
+    <menu>
+    </menu>
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="header">
+                <div class="header-image">
+
+                </div>
+                <div class="header-name">
+                    {% block title %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</header>
+<main>
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            {% block content %}{% endblock %}
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</main>
+<footer>
+    {% include 'blog/_footer.html' %}
+</footer>
+</body>
+</html>

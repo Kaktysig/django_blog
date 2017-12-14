@@ -1,0 +1,92 @@
+{% extends 'blog/_base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="article block">
+        <div class="article-header">
+            <a class="article-image">
+                <img src="{% static 'blog/avatars/kaktysig.jpg' %}" class="article-img">
+                <span class="blind_label">.</span>
+            </a>
+            <div class="article-header-info">
+                <h5 class="article-author"><a class="author">{{ item.user }}</a></h5>
+                <div class="article-date"><span>{{ item.created_at }}</span></div>
+                {% if item.user.username == username %}
+                    <div class="article-menu">
+                        <button class="btn btn-primary">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            <span>Изменить</span>
+                        </button>
+                        <form action="{% url 'delete_article' article_id=item.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-trash" aria-hidden="true"></i> Удалить</button>
+                        </form>
+                    </div>
+                    {% endif %}
+            </div>
+            <div class="article-content">
+                <div class="article-info">
+                    <div class="article-text">
+                        <div>{{ item.content }}</div>
+                    </div>
+                    <div class="article_footer">
+                        <div class="article_likes">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            <span class="article-footer-item-text">Нравится</span><span>{{ item.likes }}</span>
+                        </div>
+                        <div class="article_comments">
+                            <i class="fa fa-comment" aria-hidden="true"></i>
+                            <span class="article-footer-item-text">Комментарии</span><span>0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% for comment in comments %}
+        <div class="block comment">
+            <div class="article-header">
+                <a class="article-image">
+                    <img src="{% static 'blog/avatars/kaktysig.jpg' %}" class="article-img">
+                    <span class="blind_label">.</span>
+                </a>
+                <div class="article-header-info">
+                    <h5 class="article-author"><a class="author">{{ comment.user }}</a></h5>
+                    <div class="article-date"><span>{{ comment.created_at }}</span></div>
+                </div>
+            </div>
+            <div class="article-content">
+                <div class="article-info">
+                    <div class="article-text">
+                        <div>{{ comment.content }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="block comment">
+        <form class="new-comment" action="{% url 'create_new_comment' article_id=item.id %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Оставьте свой комментарий</label>
+                <br>
+                {{ form.content }}
+                <select hidden name="user" required="" id="id_user">
+                    <option value="{{ username }}" selected>{{ username }}</option>
+                </select>
+                <select hidden name="article_id" required="" id="id_article_id">
+                    <option value="{{ item.id }}" selected="">{{ item.id }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Отправить</button>
+            </div>
+
+        </form>
+    </div>
+{% endblock %}
+
+{% block title %}
+    <h1>{{ title }}</h1>
+{% endblock %}
